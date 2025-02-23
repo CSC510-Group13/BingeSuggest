@@ -877,7 +877,8 @@ $(document).ready(function () {
 			error: function (error) {
         $("#User").val("")
 			  $("#Password").val("")
-			  $("#logInError").attr("class", "d-flex justify-content-center")
+			  $("#logInError").removeClass("d-none")
+			  $("#logInError").addClass("d-block")
       },
 		})
 	}
