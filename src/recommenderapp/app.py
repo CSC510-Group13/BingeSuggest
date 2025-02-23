@@ -17,8 +17,8 @@ import requests
 from dotenv import load_dotenv
 
 sys.path.append("../../")
-from src.recommenderapp.utils import (
-    beautify_feedback_data,
+
+from src.recommenderapp.utils import(
     send_email_to_user,
     create_account,
     login_to_account,
@@ -65,6 +65,12 @@ def login_page():
     """
     return render_template("login.html")
 
+@app.route("/signup")
+def signup_page():
+    """
+    Renders the sign up page.
+    """
+    return render_template("signup.html")
 
 @app.route("/profile")
 def profile_page():

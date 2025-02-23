@@ -1002,13 +1002,16 @@ $(document).ready(function () {
 	})
 
 	function makeAccount(email, username, password, dupPassword) {
+
 		if (password != dupPassword) {
 			$("#newPassword").val("")
 			$("#dupPassword").val("")
-			$("#misMatchPass").attr("class", "d-flex justify-content-center")
+			$("#misMatchPass").removeClass("d-none")
+			$("#misMatchPass").addClass("d-block")
 		} else if (username == 'testUser'){
             $("#newUser").val("")
-            $("#invalidUsername").attr("class", "d-flex justify-content-center")
+			$("#invalidUsername").removeClass("d-none")
+			$("#invalidUsername").addClass("d-block")
         } else {
 			data = {
 				email: email,
