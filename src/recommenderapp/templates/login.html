@@ -26,87 +26,35 @@ This code is licensed under MIT license (see LICENSE for details)
 </head>
 
 <body class="login-page">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark topNavBar fixed-top" id="loginTopNav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">BingeSuggest🍿</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <a class="navbar-brand" href="#">BingeSuggest🍿</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
-  </nav>
-
-  <div class="container" style="margin-top: 60px;" id="centralDivLogin">
-    <div class="heading1"><br><br><br><br>
-      <h1 style="margin-bottom: 5px;">
-        <center>🎬 BingeSuggest🍿: Log In</center>
-      </h1>
-      <div class="wrapper" style="width: 100%; margin-bottom: 30px; orientation: portrait; flex-direction: column;">
-        <center><input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="UserId" id="User"
-            style="width:30%; align-items: center; border-radius: 40px; margin-bottom: 20px;" /></center>
-        <center><input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="PassId" id="Password"
-            style="width:30%; align-items: center; border-radius: 40px;" /></center>
-        <div class="d-none" id="logInError" style="orientation: portrait;">
-          <h3 style="color:red; height: 30%;">Incorrect Username or Password</h3>
+</nav>
+<div class="container d-flex flex-column align-items-center justify-content-center vh-100">
+    <!-- Login Form -->
+    <div id="loginForm" class="card p-4 shadow-lg w-100" style="max-width: 400px; border-radius: 15px;">
+        <h1 class="text-center mb-4 text-black">🎬 BingeSuggest🍿 <br/> Log In</h1>
+        <input type="text" class="form-control mb-3" placeholder="Username" id="User">
+        <input type="password" class="form-control mb-3" placeholder="Password" id="Password">
+        <div id="logInError" class="d-none text-danger mb-3 text-center">
+            <strong class="height:70px">Incorrect Username or Password</strong>
         </div>
-      </div>
-      <center>
-        <div style="width:35%; height:20%;">
-          <button id="loginButton" onclick="login()" class="btn btn-primary mx-auto">Login</button>
-          <button id="createAccountButton" onclick="createAccount()" class="btn btn-primary mx-auto">Create an
-            Account</button>
-        </div>
-      </center>
-      <br>
-      <button id="guestPass" onclick="createAccount()" class="btn btn-primary mx-auto">Continue as Guest</button><br><br>
-      <div class="highlighted-section">
-        <p>Made with ❤️ by <a href="https://github.com/svd-ncsu/BingeSuggest" target="_blank"> BingeSuggest</a></p>
-        <a href="https://github.com/svd-ncsu/BingeSuggest/blob/master/LICENSE.md" target="_blank">MIT License Copyright
-          (c) 2024 BingeSuggest</a>
-      </div>
+        <button id="loginButton" onclick="login()" class="btn btn-primary w-100 mb-2">Login</button>
+        <a  href="/signup" class="btn btn-outline-primary w-100 mb-2">Create an Account</a>
+        <button id="guestPass" onclick="continueAsGuest()" class="btn btn-secondary w-100">Continue as Guest</button>
     </div>
-  </div>
-  <div class="d-none" id="loaderLogin">
-    <center>
-      <h3>Logging In:</h3>
-    </center>
-    <div class="spinner-border" role="status">
-      <span class="sr-only"></span>
+    
+    
+    <div class="mt-4 text-center">
+        <p>Made with ❤️ by <a href="https://github.com/svd-ncsu/BingeSuggest" target="_blank">BingeSuggest</a></p>
+        <a href="https://github.com/svd-ncsu/BingeSuggest/blob/master/LICENSE.md" target="_blank">MIT License Copyright (c) 2024 BingeSuggest</a>
     </div>
-  </div>
-  <div class="d-none" id="createAccountForm" style="orientation: portrait;">
-    <div class="container" style="width:100%">
-      <h1>
-        <center>🎬 BingeSuggest🍿: Create an Account</center>
-      </h1><br><br>
-      <center>
-        <h3 style="align-items:left;">Enter Your Email:</h3>
-        <input class="form-control mr-sm-2" type="newUser" placeholder="Email" aria-label="emailAcc" id="emailAcc"
-          style="width:50%; align-items: center; border-radius: 40px;" />
-        <h3 style="align-items:left;">Create Your Username:</h3>
-        <input class="form-control mr-sm-2" type="newUser" placeholder="Username" aria-label="UserId" id="newUser"
-          style="width:50%; align-items: center; border-radius: 40px;" />
-        <h3 style="align-items:left;">Create Your Password:</h3>
-        <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="PassId" id="newPassword"
-          style="width:50%; align-items: center; border-radius: 40px;" />
-        <h3 style="width:50%; align-items: center; border-radius: 40px;">Re-enter Your Password:</h3>
-        <input class="form-control mr-sm-2" type="password" placeholder="Re-enter Password" aria-label="PassId"
-          id="dupPassword" style="width:50%; align-items: center; border-radius: 40px;" />
-      </center>
-        <div class="d-none" id="misMatchPass" style="orientation: portrait;">
-        <h3 style="color:red; height: 30%;">Passwords do not match!</h3>
-      </div>
-      <div class="d-none" id="invalidUsername" style="orientation: portrait;">
-        <h3 style="color:red; height: 30%;">Invalid Username</h3>
-      </div>
-      <br>
-      <div>
-        <center>
-          <button id="makeAccountButton" onclick="makeAccount()" class="btn btn-primary mx-auto">Create Account</button>
-          <button id="backToLogin" onclick="backToLogin()" class="btn btn-primary mx-auto">Back to login</button>
-        </center>
-      </div>
-    </div>
+</div>
 
 </body>
 
