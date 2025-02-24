@@ -4,6 +4,7 @@ This code is licensed under MIT license (see LICENSE for details)
 
 @author: PopcornPicks
 """
+
 # pylint: disable=wrong-import-position
 # pylint: disable=wrong-import-order
 # pylint: disable=import-error
@@ -15,6 +16,7 @@ from flask_cors import CORS
 import mysql.connector
 import requests
 from dotenv import load_dotenv
+import tmdbsimple as tmdb
 
 sys.path.append("../../")
 from src.recommenderapp.utils import (
@@ -56,6 +58,9 @@ app.secret_key = "secret key"
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 user = {1: None}
 comments: []
+
+load_dotenv()
+tmdb.API_KEY = os.getenv("TMDB_API_KEY")
 
 
 @app.route("/")
@@ -192,14 +197,21 @@ def predict_all():
 @app.route("/search", methods=["POST"])
 def search():
     """
-    Handles movie search requests.
+    Handles movie search requests using TMDB API.
     """
     term = request.form["q"]
-    finder = Search()
-    filtered_dict = finder.results_top_ten(term)
-    resp = jsonify(filtered_dict)
-    resp.status_code = 200
-    return resp
+    search_instance = tmdb.Search()
+    search_instance.movie(query=term)
+    results = [
+        {
+            "title": s.get("title"),
+            "id": s.get("id"),
+            "release_date": s.get("release_date"),
+            "popularity": s.get("popularity"),
+        }
+        for s in search_instance.results
+    ]
+    return jsonify(results), 200
 
 
 @app.route("/", methods=["POST"])

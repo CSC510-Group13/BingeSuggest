@@ -342,6 +342,40 @@ ul {
             }
         }
 
+$(function () {
+  $("#searchBox").autocomplete({
+    source: function (request, response) {
+      $.ajax({
+        type: "POST",
+        url: "/search",
+        data: { q: request.term },
+        success: function (data) {
+          response($.map(data, function (item) {
+            var year = item.release_date ? item.release_date.substring(0, 4) : "N/A";
+            return {
+              label: item.title + " (" + year + ")",
+              value: item.title,
+              id: item.id
+            };
+          }));
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(textStatus + " " + errorThrown);
+        }
+      });
+    },
+    select: function (event, ui) {
+      // Clear previous selection and store selected movie id if needed.
+      $("#selectedMovies").empty();
+      var li = $("<li class='list-group-item'/>").text(ui.item.value);
+      $("#selectedMovies").append(li);
+      // Optionally save ui.item.id to a hidden input if needed:
+      $("#imdbID").val(ui.item.id);
+      return false;
+    },
+    minLength: 1,
+  });
+});
 
   </script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
