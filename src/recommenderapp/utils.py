@@ -19,6 +19,7 @@ from flask import jsonify
 import json
 
 import pandas as pd
+import os
 
 
 def create_colored_tags(genres):
@@ -138,10 +139,10 @@ def send_email_to_user(recipient_email, categorized_data):
     smtp_server = "smtp.gmail.com"
     # Port for TLS
     smtp_port = 587
-    sender_email = "dashytistheworst@gmail.com"
+    sender_email = os.getenv("SENDER_EMAIL")
 
     # Use an app password since 2-factor authentication is enabled
-    sender_password = "whothefuckputscredentialsincode"
+    sender_password = os.getenv("SENDER_EMAIL_PASSWORD")
     subject = "Your movie recommendation from BingeSuggest"
 
     # Create the email message
