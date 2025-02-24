@@ -558,6 +558,25 @@ def postCommentOnMovieDisccusion(id):
     data["imdb_id"] = id
     return create_or_update_discussion(g.db, data)
 
+@app.route("/get_imdb_id", methods=["POST"])
+def get_imdb_id():
+    """
+    Fetches the IMDb ID for a given movie title.
+    """
+    data = request.get_json()
+    movie_name = data.get("movie_name")
+
+    if not movie_name:
+        return jsonify({"error": "Missing movie name"}), 400
+
+    # Fetch IMDb ID using existing function
+    imdb_id = get_imdb_id_by_name(g.db, movie_name)
+
+    if imdb_id:
+        return jsonify({"imdb_id": imdb_id}), 200
+    else:
+        return jsonify({"error": "IMDb ID not found"}), 404
+
 
 @app.before_request
 def before_request():
