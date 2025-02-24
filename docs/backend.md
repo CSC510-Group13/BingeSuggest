@@ -1,6 +1,6 @@
 # Functions Description of the backend
 
-## [app.py](https://github.com/ychen-207523/BingeSuggest/blob/v7.0/src/recommenderapp/app.py)
+## [app.py](https://github.com/CSC510-Group13/BingeSuggest/blob/v7.0/src/recommenderapp/app.py)
 
 ### login_page()
 
@@ -129,7 +129,7 @@
 ## delete_watchlist_data()
 **Removes a movie from the watched list of the user**
 
-## [utils.py](https://github.com/ychen-207523/BingeSuggest/blob/v7.0/src/recommenderapp/utils.py)
+## [utils.py](https://github.com/CSC510-Group13/BingeSuggest/blob/v7.0/src/recommenderapp/utils.py)
 
 ### create_colored_tags(genres)
 
@@ -240,7 +240,7 @@
 **Input: database handle, user_id of the user logged in, imdb_id of the movie whose discussion is required**<br/>
 **Output: returns the deleted idMovies and success message if present or None and doesnt exist message**<br/>
 
-## [search.py](https://github.com/ychen-207523/BingeSuggest/blob/v7.0/src/recommenderapp/search.py)
+## [search.py](https://github.com/CSC510-Group13/BingeSuggest/blob/v7.0/src/recommenderapp/search.py)
 
 **Class that handles the search feature of the landing page.**
 
@@ -262,7 +262,7 @@
 ### results_top_ten(word)
 
 **Function to get top 10 results**
-**Input : A word/initial character(s);<br/> Output : Top 10 titles starting with the given prompt (taken from [results](https://github.com/ychen-207523/BingeSuggest/blob/v7.0/docs/backend.md#resultsword))**<br/>
+**Input : A word/initial character(s);<br/> Output : Top 10 titles starting with the given prompt (taken from [results](https://github.com/CSC510-Group13/BingeSuggest/blob/v7.0/docs/backend.md#resultsword))**<br/>
 
 ## Item_based.py
 

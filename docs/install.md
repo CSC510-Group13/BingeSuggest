@@ -2,11 +2,11 @@
 
 ## Step 1: Git Clone the Repository
   
-    git clone https://github.com/ychen-207523/PopcornPicks.git
+    git clone https://github.com/CSC510-Group13/PopcornPicks.git
     
   (OR) Download the .zip file on your local machine from the following link
   
-    https://github.com/ychen-207523/PopcornPicks/
+    https://github.com/CSC510-Group13/PopcornPicks/
 
 ## EDIT: While trying to install this on my Mac, I found I needed to run the following (I have Homebrew installed) in order to complete step 2
 
@@ -45,12 +45,18 @@
     DB_NAME = 'PopcornPicksDB'
     
     OMDB_API_KEY = <your_omdb_api_key>
+    
+    SENDER_EMAIL = <your_sender_email>
+    SENDER_EMAIL_PASSWORD = <your_sender_email_password>
+    SMTP_SERVER = "smtp.gmail.com"
+    SMTP_PORT = 587
     ```
     
     Replace `your_password` with the password you created during MySQL Server setup. 
     Replace `<your_omdb_api_key>` with your own API key from [OMDb API](http://www.omdbapi.com/).
+    Replace `<your_sender_email>` with the email address you created for the email notifier feature.
+    Replace `<your_sender_email_password>` with the password for the email address you created for the email notifier feature.
    
-    
 ## Step 6: Python Packages
    Run the following command in the terminal
     
