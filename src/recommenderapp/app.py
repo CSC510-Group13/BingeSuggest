@@ -558,6 +558,7 @@ def postCommentOnMovieDisccusion(id):
     data["imdb_id"] = id
     return create_or_update_discussion(g.db, data)
 
+
 @app.route("/get_imdb_id", methods=["POST"])
 def get_imdb_id():
     """
