@@ -185,31 +185,34 @@ This code is licensed under MIT license (see LICENSE for details)
             source: function (request, response) {
                 $.ajax({
                 type: "POST",
-                url: "http://localhost:5000/search",
-                dataType: "json",
-                cache: false,
-                data: {
-                    q: request.term,
-                },
+                url: "/search",
+                data: { q: request.term },
                 success: function (data) {
-                    response(data);
+                    response($.map(data, function (item) {
+                        var year = item.release_date ? item.release_date.substring(0, 4) : "N/A";
+                        return {
+                            label: item.title + " (" + year + ")",
+                            value: item.title,
+                            id: item.id
+                        };
+                    }));
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(textStatus + " " + errorThrown);
-                },
+                }
                 });
             },
             select: function (event, ui) {
-                // Clear the previous selection
                 $("#selectedMovies").empty();
-                selectedMovie = ui.item.value;
-                // Append the new selection
-                var li = $("<li class='list-group-item'/>").text(selectedMovie);
-                $("#selectedMovies").append(li);
+                $("#selectedMovies").append(
+                    $("<li class='list-group-item'/>").text(ui.item.value)
+                );
+                $("#imdbID").val(ui.item.id);
+                $("#movieName").val(ui.item.value);
                 $("#searchBox").val("");
                 return false;
             },
-            minLength: 1,
+            minLength: 1
             });
         });
 

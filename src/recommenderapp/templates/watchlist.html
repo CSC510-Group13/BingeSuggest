@@ -70,5 +70,38 @@ This code is licensed under MIT license (see LICENSE for details)
           <span class="sr-only"></span>
         </div>
     </div>
+
+    <script>
+    $(function () {
+      $("#searchBoxWatchlist").autocomplete({
+        source: function (request, response) {
+          $.ajax({
+            type: "POST",
+            url: "/search",
+            data: { q: request.term },
+            success: function (data) {
+              response($.map(data, function (item) {
+                var year = item.release_date ? item.release_date.substring(0, 4) : "N/A";
+                return {
+                  label: item.title + " (" + year + ")",
+                  value: item.title,
+                  id: item.id
+                };
+              }));
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.log(textStatus + " " + errorThrown);
+            }
+          });
+        },
+        select: function (event, ui) {
+          $("#imdbID").val(ui.item.id);
+          $("#movieName").val(ui.item.value);
+          return false;
+        },
+        minLength: 1,
+      });
+    });
+    </script>
   </body>
 </html>
