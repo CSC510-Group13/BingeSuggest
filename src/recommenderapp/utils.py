@@ -138,10 +138,10 @@ def send_email_to_user(recipient_email, categorized_data):
     smtp_server = "smtp.gmail.com"
     # Port for TLS
     smtp_port = 587
-    sender_email = "dashytisbest@gmail.com"
+    sender_email = "dashytistheworst@gmail.com"
 
     # Use an app password since 2-factor authentication is enabled
-    sender_password = "peuehggqasvdbwmr"
+    sender_password = "whothefuckputscredentialsincode"
     subject = "Your movie recommendation from BingeSuggest"
 
     # Create the email message
@@ -156,18 +156,18 @@ def send_email_to_user(recipient_email, categorized_data):
     # Create the email message with HTML content
     html_content = email_html_content.format(
         "\n".join(
-            f'<li>{movie} \
-            {create_colored_tags(movie_to_genres.get(movie, ["Unknown Genre"]))}</li><br>'
+            f"<li>{movie} \
+            {create_colored_tags(movie_to_genres.get(movie, ['Unknown Genre']))}</li><br>"
             for movie in categorized_data["Liked"]
         ),
         "\n".join(
-            f'<li>{movie} \
-            {create_colored_tags(movie_to_genres.get(movie, ["Unknown Genre"]))}</li><br>'
+            f"<li>{movie} \
+            {create_colored_tags(movie_to_genres.get(movie, ['Unknown Genre']))}</li><br>"
             for movie in categorized_data["Disliked"]
         ),
         "\n".join(
-            f'<li>{movie} \
-            {create_colored_tags(movie_to_genres.get(movie, ["Unknown Genre"]))}</li><br>'
+            f"<li>{movie} \
+            {create_colored_tags(movie_to_genres.get(movie, ['Unknown Genre']))}</li><br>"
             for movie in categorized_data["Yet to Watch"]
         ),
     )
